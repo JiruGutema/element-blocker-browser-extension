@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Element Blocker</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div class="brand-text">
+        <h1>Element Blocker</h1>
+        <p id="site-label" class="site-label">Loading…</p>
+      </div>
+    </div>
+    <label class="switch" title="Pause or resume all blocking">
+      <input type="checkbox" id="master-toggle" />
+      <span class="switch-track"><span class="switch-thumb"></span></span>
+    </label>
+  </header>
+
+  <button id="pick-btn" class="pick-btn" type="button">
+    <span class="pick-icon" aria-hidden="true">⌖</span>
+    Pick an element on the page
+  </button>
+
+  <form id="add-form" class="add-form" autocomplete="off">
+    <input
+      id="selector-input"
+      class="selector-input"
+      type="text"
+      placeholder=".class-name  or  #element-id"
+      spellcheck="false"
+      aria-label="CSS selector to block"
+    />
+    <div class="add-row">
+      <div class="scope-toggle" role="radiogroup" aria-label="Rule scope">
+        <button type="button" class="scope-opt is-active" data-scope="site" role="radio" aria-checked="true">This site</button>
+        <button type="button" class="scope-opt" data-scope="global" role="radio" aria-checked="false">All sites</button>
+      </div>
+      <button id="add-btn" class="add-btn" type="submit">Block</button>
+    </div>
+    <p id="form-error" class="form-error" hidden></p>
+  </form>
+
+  <section class="rules" aria-label="Blocking rules">
+    <div id="empty-state" class="empty-state" hidden>
+      No rules yet. Pick an element above, or paste a selector to block it.
+    </div>
+    <ul id="rule-list" class="rule-list"></ul>
+  </section>
+
+  <nav id="pager" class="pager" aria-label="Rule pages" hidden>
+    <button id="prev-page" class="pager-btn" type="button" aria-label="Previous page">&lsaquo;</button>
+    <span id="pager-label" class="pager-label">1 / 1</span>
+    <button id="next-page" class="pager-btn" type="button" aria-label="Next page">&rsaquo;</button>
+  </nav>
+
+  <footer class="footer">
+    <span id="count-label">0 rules</span>
+    <button id="clear-site" class="link-btn" type="button">Clear this site</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
