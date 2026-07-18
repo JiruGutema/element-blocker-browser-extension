@@ -166,10 +166,10 @@ function highlightBox() {
       position: "fixed",
       zIndex: "2147483647",
       pointerEvents: "none",
-      background: "rgba(99, 102, 241, 0.22)",
-      border: "2px solid #6366f1",
-      borderRadius: "3px",
-      boxShadow: "0 0 0 2px rgba(99,102,241,0.35)",
+      background: "rgba(255, 92, 26, 0.18)",
+      border: "2px solid #17130b",
+      borderRadius: "2px",
+      boxShadow: "3px 3px 0 #ff5c1a",
       transition: "all 60ms ease-out",
       display: "none",
     });
@@ -279,11 +279,11 @@ function toast(message, positive) {
       bottom: "20px",
       left: "50%",
       transform: "translateX(-50%)",
-      padding: "10px 16px",
-      borderRadius: "10px",
-      font: "13px/1.4 system-ui, sans-serif",
-      color: "#fff",
-      boxShadow: "0 8px 24px rgba(0,0,0,0.28)",
+      padding: "12px 16px",
+      borderRadius: "3px",
+      border: "2px solid #17130b",
+      font: "700 13px/1.4 system-ui, sans-serif",
+      boxShadow: "4px 4px 0 #17130b",
       pointerEvents: "none",
       maxWidth: "80vw",
       whiteSpace: "nowrap",
@@ -292,7 +292,8 @@ function toast(message, positive) {
     });
     document.documentElement.appendChild(el);
   }
-  el.style.background = positive ? "#4f46e5" : "#334155";
+  el.style.background = positive ? "#ff5c1a" : "#17130b";
+  el.style.color = positive ? "#17130b" : "#f7f3e9";
   el.textContent = message;
   el.style.opacity = "1";
   if (toastTimer) clearTimeout(toastTimer);

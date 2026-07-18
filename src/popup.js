@@ -1,4 +1,4 @@
-// Element Blocker — popup controller
+// Popup controller
 // Reads/writes the locally-stored rule list and renders the rules relevant to
 // the active tab (this-site rules + all global rules). All state updates are
 // immutable: build a new object and hand it to setState.
@@ -178,8 +178,27 @@ async function render() {
       return (a.createdAt ?? 0) - (b.createdAt ?? 0);
     });
 
-  els.list.replaceChildren(...visible.map(renderRule));
+  const totalPages = Math.max(1, Math.ceil(visible.length / PAGE_SIZE));
+
+  // Jump to the page holding a just-added/edited rule, then clamp into range
+  // (a deletion on the last page can leave ctx.page pointing past the end).
+  if (ctx.focusId) {
+    const idx = visible.findIndex((r) => r.id === ctx.focusId);
+    if (idx >= 0) ctx.page = Math.floor(idx / PAGE_SIZE);
+    ctx.focusId = null;
+  }
+  ctx.page = Math.min(Math.max(ctx.page, 0), totalPages - 1);
+
+  const start = ctx.page * PAGE_SIZE;
+  const pageItems = visible.slice(start, start + PAGE_SIZE);
+
+  els.list.replaceChildren(...pageItems.map(renderRule));
   els.emptyState.hidden = visible.length > 0;
+
+  els.pager.hidden = totalPages <= 1;
+  els.pagerLabel.textContent = `${ctx.page + 1} / ${totalPages}`;
+  els.prevPage.disabled = ctx.page === 0;
+  els.nextPage.disabled = ctx.page >= totalPages - 1;
 
   const siteCount = rules.filter((r) => r.scope === "site" && r.site === ctx.host).length;
   const globalCount = rules.filter((r) => r.scope === "global").length;
@@ -198,6 +217,7 @@ async function addRule(selector, scope) {
     enabled: true,
     createdAt: Date.now(),
   };
+  ctx.focusId = rule.id; // land on whichever page ends up showing it
   await mutateRules((rules) => {
     const isDuplicate = rules.some(
       (r) => r.selector === selector && r.scope === scope && r.site === rule.site
@@ -234,6 +254,15 @@ function wireEvents() {
   });
 
   els.pickBtn.addEventListener("click", startPicking);
+
+  els.prevPage.addEventListener("click", () => {
+    ctx.page -= 1;
+    render();
+  });
+  els.nextPage.addEventListener("click", () => {
+    ctx.page += 1;
+    render();
+  });
 
   els.scopeToggle.addEventListener("click", (e) => {
     const opt = e.target.closest(".scope-opt");
