@@ -39,7 +39,7 @@ plus the packaged `content-section-blocker.xpi` and `content-section-blocker-chr
 3. **Load Temporary Add-on…** → select `dist/firefox/manifest.json` (or `dist/content-section-blocker.xpi`)
 
 ### You can get published extension for Firefox
-- [firefox addon page](https://addons.mozilla.org/en-US/firefox/addon/element-selector-blocker)
+- [firefox addon page](https://addons.mozilla.org/en-US/developers/addon/content-section-blocker)
 
 ## How to use
 
