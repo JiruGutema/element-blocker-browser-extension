@@ -1,4 +1,4 @@
-// Element Blocker — content script
+// Content Section Blocker — content script
 // Injects a stylesheet that force-hides every element matching the user's
 // stored selectors, and provides a click-to-pick mode for grabbing selectors
 // straight off the page. Runs at document_start so blocked elements never flash.
@@ -24,7 +24,7 @@ async function getState() {
     const stored = await api.storage.local.get(STORAGE_KEY);
     return stored[STORAGE_KEY] ?? emptyState();
   } catch (err) {
-    console.error("[Element Blocker] failed to read state:", err);
+    console.error("[Content Section Blocker] failed to read state:", err);
     return emptyState();
   }
 }
@@ -33,7 +33,7 @@ async function setState(next) {
   try {
     await api.storage.local.set({ [STORAGE_KEY]: next });
   } catch (err) {
-    console.error("[Element Blocker] failed to write state:", err);
+    console.error("[Content Section Blocker] failed to write state:", err);
   }
 }
 

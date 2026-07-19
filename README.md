@@ -22,7 +22,7 @@ per-node scanning required.
 ```
 
 This produces `dist/chrome/` and `dist/firefox/` (unpacked, directly loadable)
-plus the packaged `element-blocker.xpi` and `element-blocker-chrome.zip`.
+plus the packaged `content-section-blocker.xpi` and `content-section-blocker-chrome.zip`.
 
 ## Install
 
@@ -36,7 +36,7 @@ plus the packaged `element-blocker.xpi` and `element-blocker-chrome.zip`.
 
 1. `./build.sh`
 2. Open `about:debugging#/runtime/this-firefox`
-3. **Load Temporary Add-on…** → select `dist/firefox/manifest.json` (or `dist/element-blocker.xpi`)
+3. **Load Temporary Add-on…** → select `dist/firefox/manifest.json` (or `dist/content-section-blocker.xpi`)
 
 ### You can get published extension for Firefox
 - [firefox addon page](https://addons.mozilla.org/en-US/firefox/addon/element-selector-blocker)

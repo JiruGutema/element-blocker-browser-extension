@@ -3,8 +3,8 @@
 #
 #   dist/chrome/                unpacked Chrome/Edge extension  (Load unpacked)
 #   dist/firefox/               unpacked Firefox extension      (about:debugging)
-#   dist/element-blocker.xpi           Firefox package (unsigned)
-#   dist/element-blocker-chrome.zip    Chrome Web Store upload
+#   dist/content-section-blocker.xpi           Firefox package (unsigned)
+#   dist/content-section-blocker-chrome.zip    Chrome Web Store upload
 #
 # Usage: ./build.sh
 set -euo pipefail
@@ -40,7 +40,7 @@ package_zip() {
 build_target chrome
 build_target firefox
 
-package_zip "$DIST/chrome"  "$DIST/element-blocker-chrome.zip"
-package_zip "$DIST/firefox" "$DIST/element-blocker.xpi"
+package_zip "$DIST/chrome"  "$DIST/content-section-blocker-chrome.zip"
+package_zip "$DIST/firefox" "$DIST/content-section-blocker.xpi"
 
 echo "done."
