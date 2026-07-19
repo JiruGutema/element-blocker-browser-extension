@@ -1,4 +1,4 @@
-# Element Blocker
+# Content Section Blocker
 
 Force-hide any element on any website by CSS selector (class or id). Rules are
 editable and stored locally — per-site by default, or globally across all sites.
