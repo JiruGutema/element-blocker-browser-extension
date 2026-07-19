@@ -5,38 +5,15 @@ editable and stored locally — per-site by default, or globally across all site
 
 ## What it does
 
-- **Block by selector** — paste a selector like `.ad-container` or `#promoted-post` and the matching element is force-hidden with `display: none !important`.
-- **Pick an element** — click _Pick an element on the page_, then click any element; the extension generates a selector (preferring its `id`) and blocks it instantly.
-- **Per-site or global** — a rule tagged _This site_ only fires on the domain you added it on; _All sites_ rules fire everywhere.
-- **Fully editable** — toggle any rule on/off, click a selector to edit it, or delete it. Everything persists in `storage.local`.
-- **Master switch** — pause or resume all blocking from the popup header.
+- **Block by selector**: paste a selector like `.ad-container` or `#promoted-post` and the matching element is force-hidden with `display: none !important`.
+- **Pick an element**: click _Pick an element on the page_, then click any element; the extension generates a selector (preferring its `id`) and blocks it instantly.
+- **Per-site or global**: a rule tagged _This site_ only fires on the domain you added it on; _All sites_ rules fire everywhere.
+- **Fully editable**: toggle any rule on/off, click a selector to edit it, or delete it. Everything persists in `storage.local`.
+- **Master switch**: pause or resume all blocking from the popup header.
 
 Rules are injected as a stylesheet at `document_start`, so blocked elements never
 flash before being hidden, and dynamically-added elements are hidden too — no
 per-node scanning required.
-
-## Project layout
-
-The code is written once in `src/` and built per browser. The only difference
-between the two targets is the manifest (Firefox needs a `gecko.id` to sign an XPI).
-
-```
-Element-Blocker/
-├── src/                      # shared source (edit here)
-│   ├── content.js
-│   ├── popup.html · popup.css · popup.js
-│   └── icons/
-├── manifests/
-│   ├── manifest.chrome.json  # MV3, no gecko settings
-│   └── manifest.firefox.json # MV3 + browser_specific_settings.gecko
-├── build.sh                  # assembles dist/ and packages
-├── dist/                     # build output (generated)
-│   ├── chrome/               # load-unpacked in Chrome/Edge
-│   ├── firefox/              # load in about:debugging
-│   ├── element-blocker.xpi          # Firefox package
-│   └── element-blocker-chrome.zip   # Chrome Web Store upload
-└── docs/FIREFOX-XPI.md       # how to build & sign the XPI
-```
 
 ## Build
 
@@ -61,7 +38,8 @@ plus the packaged `element-blocker.xpi` and `element-blocker-chrome.zip`.
 2. Open `about:debugging#/runtime/this-firefox`
 3. **Load Temporary Add-on…** → select `dist/firefox/manifest.json` (or `dist/element-blocker.xpi`)
 
-For a **permanent / signed** Firefox install, see [`docs/FIREFOX-XPI.md`](docs/FIREFOX-XPI.md).
+### You can get published extension for Firefox
+- [https://addons.mozilla.org/en-US/firefox/addon/element-selector-blocker/](firefox addon page)
 
 ## How to use
 
