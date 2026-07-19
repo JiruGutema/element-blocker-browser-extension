@@ -39,7 +39,7 @@ plus the packaged `element-blocker.xpi` and `element-blocker-chrome.zip`.
 3. **Load Temporary Add-on…** → select `dist/firefox/manifest.json` (or `dist/element-blocker.xpi`)
 
 ### You can get published extension for Firefox
-- [https://addons.mozilla.org/en-US/firefox/addon/element-selector-blocker/](firefox addon page)
+- [firefox addon page](https://addons.mozilla.org/en-US/firefox/addon/element-selector-blocker)
 
 ## How to use
 
